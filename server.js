@@ -1,4 +1,5 @@
 var express = require('express');
+var router = express.Router();
 var bodyParser = require('body-parser');
 var logger = require('morgan');
 var methodOverride = require('method-override');
@@ -18,8 +19,8 @@ const someOtherPlaintextPassword = 'not_bacon';
 const url = `mongodb+srv://test_user:commune123@cluster0.0ikrc.gcp.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
 const secret = 'RandomLettersAndNumbers'
 
-app.post("/login", (req, response) => {
-    
+router.post("/login", (req, response) => {
+    console.log(req.body)
     const regno = req.body.regno
     const password = req.body.password
     MongoClient.connect(url, { useUnifiedTopology: true, useNewUrlParser: true }, function (err, db) {
@@ -44,7 +45,8 @@ app.post("/login", (req, response) => {
                             response.json({
                                 success: true,
                                 status: 200,
-                                token: token
+                                token: token,
+                                regno:regno
                             })
 
                             console.log("1 document inserted");
@@ -58,7 +60,8 @@ app.post("/login", (req, response) => {
                                 success: true,
                                 status: 500,
                                 token: token,
-                                message: "you are already part of the community"
+                                message: "you are already part of the community",
+                                regno:regno
                             })
                       
                 }
@@ -67,4 +70,4 @@ app.post("/login", (req, response) => {
     });
 
 })
-app.listen(process.env.PORT||3000);
+module.exports = router;
