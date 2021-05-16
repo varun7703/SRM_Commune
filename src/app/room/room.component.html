@@ -1,0 +1,35 @@
+
+
+<div class="join-container">
+    <header class="join-header">
+        <h1><fa-icon [icon]="faSmile"></fa-icon>SRM-Commune</h1>
+    </header>
+    <main class="join-main">
+        <!-- <form action="chat.html"> -->
+            <div class="form-control">
+                <label for="username">Username</label>
+                <input
+                    type="text"
+                    name="username"
+                    id="username"
+                    placeholder="Enter username..."
+                    [(ngModel)]="username"
+                    required
+                    disabled
+                />
+            </div>
+            <div class="form-control">
+                <label for="room">Room</label>
+                <select name="room" id="room" [(ngModel)]="room">
+                    <option value="Admission Info">Admission Info</option>
+                    <option value="Placement Dept">Placement Dept</option>
+                    <option value="Faculty Server 1">Faculty Server 1</option>
+                    <option value="Faculty Server 2">Faculty Server 2</option>
+                    <option value="Faculty Server 3">Faculty Server 3</option>
+                    <option value="Faculty Server 4">Faculty Server 4</option>
+                </select>
+            </div>
+            <button type="submit" class="btn" (click)="joinRoom()" routerLink="/chat">Join Chat</button>
+        <!-- </form> -->
+    </main>
+</div>

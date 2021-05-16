@@ -1,0 +1,81 @@
+<div>
+    <div class="join-container">
+        <header class="join-header">
+            <h1><fa-icon [icon]="faSmile"></fa-icon> SRM-Commune</h1>
+        </header>
+        <div class="join-main">
+          <form
+            *ngIf="!isLoggedIn"
+            name="form"
+            (ngSubmit)="f.form.valid && onSubmit()"
+            #f="ngForm"
+            novalidate
+          >
+            <div class="form-control">
+              <label for="username1">Reg No</label>
+              <input
+                type="text"
+                class="form-control"
+                name="username1"
+                [(ngModel)]="form.username1"
+                required
+                #username1="ngModel"
+                minlength="15"
+              />
+              <div
+                class="alert alert-danger"
+                role="alert"
+                *ngIf="username1.errors && f.submitted"
+              >
+              <div *ngIf="username1.errors.required">
+              Registration Number is required!</div>
+              
+              <div *ngIf="username1.errors.minlength">
+                Enter a Valid Registration Number
+              </div>
+            </div>
+            </div>
+            <div class="form-control">
+              <label for="password">Password</label>
+              <input
+                type="password"
+                class="form-control"
+                name="password"
+                [(ngModel)]="form.password"
+                required
+                minlength="6"
+                #password="ngModel"
+              />
+              <div
+                class="alert alert-danger"
+                role="alert"
+                *ngIf="password.errors && f.submitted"
+              >
+                <div *ngIf="password.errors.required">Password is required</div>
+                <div *ngIf="password.errors.minlength">
+                  Password must be at least 6 characters
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <button class="btn btn-primary btn-block">
+                Login
+              </button>
+            </div>
+            <div class="form-group">
+              <div
+                class="alert alert-danger"
+                role="alert"
+                *ngIf="f.submitted && isLoginFailed"
+              >
+                Login failed: {{ errorMessage }}
+              </div>
+            </div>
+          </form>
+      
+          <div class="alert alert-success" *ngIf="isLoggedIn">
+            Logged in as {{ roles }}.
+          </div>
+        </div>
+      </div>
+</div>

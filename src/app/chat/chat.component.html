@@ -1,0 +1,45 @@
+<!-- <div *ngFor="let message of messages">
+    {{ message }}
+</div>
+<input [(ngModel)]="message" />
+<button (click)="sendMessage()">Send</button> -->
+
+
+<div class="chat-container">
+    <header class="chat-header">
+        <h1><fa-icon [icon]="faSmile"></fa-icon> SRM-Commune</h1>
+      
+        <a id="leave-btn" class="btn" (click)="leaveRoom()">Leave Room</a>
+         </header>
+    <!-- <i class="fas fa-comments"></i> -->
+    <main class="chat-main">
+        <div class="chat-sidebar">
+            <h3><fa-icon [icon]="faComment"></fa-icon> Room Name:</h3>
+            <h2 id="room-name">{{roomName}}</h2>
+            <h3><fa-icon [icon]="faUsers"></fa-icon> Users</h3>
+            <ul id="users" *ngFor="let user of users">
+                <li>{{ user.username }}</li>
+            </ul>
+        </div>
+        <div class="chat-messages">
+            <div class="message" *ngFor="let message of messages">
+                <p class="meta">
+                    {{ message.username }}
+                    <span>{{ message.time }}</span>
+                </p>
+                <p class="text">{{ message.text }}</p>
+            </div>
+        </div>
+    </main>
+    <div class="chat-form-container">
+        <!-- <form id="chat-form"> -->
+            <div id="chat-form">
+                <input id="msg" type="text" placeholder="Enter Message" [(ngModel)]="message" required autocomplete="off" />
+                <button [disabled]="!message" class="btn" (click)="sendMessage()"><fa-icon [icon]="faPaperPlane"></fa-icon> Send</button>
+            </div>
+           
+        <!-- </form> -->
+    </div>
+</div>
+
+
